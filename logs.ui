@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Logs</class>
+ <widget class="QDockWidget" name="Logs">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>852</width>
+    <height>604</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Логи</string>
+  </property>
+  <widget class="QWidget" name="dockWidgetContents">
+   <layout class="QGridLayout" name="gridLayout">
+    <item row="0" column="0">
+     <layout class="QVBoxLayout" name="verticalLayout">
+      <item>
+       <layout class="QHBoxLayout" name="horizontalLayout">
+        <item>
+         <widget class="QLabel" name="label">
+          <property name="text">
+           <string>Период: с </string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QDateTimeEdit" name="startDateTimeEdit"/>
+        </item>
+        <item>
+         <widget class="QLabel" name="label_2">
+          <property name="text">
+           <string>по</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QDateTimeEdit" name="endDateTimeEdit"/>
+        </item>
+        <item>
+         <widget class="QLabel" name="label_3">
+          <property name="text">
+           <string>UID:</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLineEdit" name="UIDLineEdit"/>
+        </item>
+        <item>
+         <widget class="QLabel" name="label_4">
+          <property name="text">
+           <string>Модуль:</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QComboBox" name="ModuleComboBox">
+          <item>
+           <property name="text">
+            <string>Coupons</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>LevalGauge</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Topaz</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>SystemMonitor</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>HTTP Server</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>LevalGaugeService</string>
+           </property>
+          </item>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="label_5">
+          <property name="text">
+           <string>Сообщение:</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLineEdit" name="MessageLineEdit"/>
+        </item>
+        <item>
+         <spacer name="horizontalSpacer">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>40</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item>
+         <widget class="QPushButton" name="SearchPushButton">
+          <property name="text">
+           <string>Search</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+     </layout>
+    </item>
+    <item row="1" column="0">
+     <widget class="QTableWidget" name="logsTableWidget">
+      <column>
+       <property name="text">
+        <string>Дата/время</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>UID</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Модуль</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Сообщение</string>
+       </property>
+      </column>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <action name="actionSearch">
+   <property name="text">
+    <string>Search</string>
+   </property>
+   <property name="toolTip">
+    <string> Поиск</string>
+   </property>
+  </action>
+ </widget>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>SearchPushButton</sender>
+   <signal>clicked()</signal>
+   <receiver>actionSearch</receiver>
+   <slot>trigger()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>800</x>
+     <y>41</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+</ui>
