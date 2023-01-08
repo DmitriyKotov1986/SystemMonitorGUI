@@ -3,6 +3,7 @@
 
 //My
 #include "logs.h"
+#include "levelgauge.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -22,9 +23,11 @@ MainWindow::MainWindow(QWidget *parent)
     _logdb.setPort(_cnf->db_Port());
     _logdb.setHostName(_cnf->db_Host());
 
-    _loger = Common::TDBLoger::DBLoger(&_logdb, _cnf->sys_DebugMode());
+ //   _loger = Common::TDBLoger::DBLoger(&_logdb, _cnf->sys_DebugMode());
 
+    //выполняем коннект сигналов/слотов
     QObject::connect(ui->actionLogs, SIGNAL(triggered()), SLOT(showLogs()));
+
 }
 
 MainWindow::~MainWindow()
@@ -39,5 +42,13 @@ void MainWindow::showLogs()
    // addDockWidget(Qt::LeftDockWidgetArea, logsWindow);
     addDockWidget(Qt::TopDockWidgetArea, logsWindow);
     logsWindow->show();
+}
+
+void MainWindow::showLevelGauge()
+{
+    LevelGauge* levelGaugeWindow = new LevelGauge();
+
+    addDockWidget(Qt::TopDockWidgetArea, levelGaugeWindow);
+    levelGaugeWindow->show();
 }
 

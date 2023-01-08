@@ -6,12 +6,13 @@ CONFIG += c++17
 
 # You can make your code fail to compile if it uses deprecated APIs.
 # In order to do so, uncomment the following line.
-#DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
+DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
     Common/common.cpp \
     Common/tdbloger.cpp \
     Common/thttpquery.cpp \
+    levelgauge.cpp \
     logs.cpp \
     main.cpp \
     mainwindow.cpp \
@@ -22,12 +23,14 @@ HEADERS += \
     Common/common.h \
     Common/tdbloger.h \
     Common/thttpquery.h \
+    levelgauge.h \
     logs.h \
     mainwindow.h \
     tconfig.h \
     tdbquery.h
 
 FORMS += \
+    levelgauge.ui \
     logs.ui \
     mainwindow.ui
 

@@ -5,6 +5,7 @@
 #include <QFileInfo>
 #include <QDebug>
 #include <QDir>
+#include <QTime>
 
 TConfig::TConfig(const QString& configFileName) :
     _configFileName(configFileName)

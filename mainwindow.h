@@ -24,6 +24,7 @@ public:
 
 public slots:
     void showLogs();
+    void showLevelGauge();
 
 private:
     Ui::MainWindow *ui = nullptr;
