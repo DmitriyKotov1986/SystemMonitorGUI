@@ -1,7 +1,7 @@
 #ifndef LOGS_H
 #define LOGS_H
 
-#include <QDockWidget>
+//Qt
 #include <QSqlDatabase>
 #include <QAction>
 
@@ -9,22 +9,22 @@
 #include "Common/tdbloger.h"
 #include "tconfig.h"
 #include "tdbquery.h"
+#include "subwindow.h"
 
 namespace Ui
 {
     class Logs;
 }
 
-class Logs : public QDockWidget
+class Logs : public SubWindow
 {
     Q_OBJECT
 
 public:
-    explicit Logs(QWidget *parent = nullptr);
+    explicit Logs(const int id, QWidget *parent = nullptr);
     ~Logs();
 
-    const QString& errorString() const { return _errorString; }
-    bool isError() const { return !_errorString.isEmpty(); }
+    const QString& typeWindow() const override { return TYPE_WINDOW; };
 
 public slots:
     void selectResult(const TDBQuery::TResultRecords& result);
@@ -34,15 +34,25 @@ signals:
     void selectQuery(const QString& queryText);
 
 private slots:
-    void on_actionSearch_triggered();
+    void search();
+    void saveToFile();
 
 private:
-    Ui::Logs *ui;
+    void saveSettings();
+    void loadSettings();
+
+    void setEnabled(bool enabled);
+
+private:
+    static const qsizetype MAX_RECORDS_COUNT;
+    static const QString TYPE_WINDOW;
+
+    Ui::Logs *ui = nullptr;
 
     TConfig* _cnf = nullptr;
     Common::TDBLoger *_loger = nullptr;
 
-    QString _errorString;
+    QString _pathForSaveFile;
 };
 
 #endif // LOGS_H

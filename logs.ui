@@ -1,175 +1,280 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
  <class>Logs</class>
- <widget class="QDockWidget" name="Logs">
+ <widget class="QWidget" name="Logs">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>852</width>
-    <height>604</height>
+    <width>987</width>
+    <height>568</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Логи</string>
+   <string>Логирование</string>
   </property>
-  <widget class="QWidget" name="dockWidgetContents">
-   <layout class="QGridLayout" name="gridLayout">
-    <item row="0" column="0">
-     <layout class="QVBoxLayout" name="verticalLayout">
-      <item>
-       <layout class="QHBoxLayout" name="horizontalLayout">
-        <item>
-         <widget class="QLabel" name="label">
-          <property name="text">
-           <string>Период: с </string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QDateTimeEdit" name="startDateTimeEdit"/>
-        </item>
-        <item>
-         <widget class="QLabel" name="label_2">
-          <property name="text">
-           <string>по</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QDateTimeEdit" name="endDateTimeEdit"/>
-        </item>
-        <item>
-         <widget class="QLabel" name="label_3">
-          <property name="text">
-           <string>UID:</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QLineEdit" name="UIDLineEdit"/>
-        </item>
-        <item>
-         <widget class="QLabel" name="label_4">
-          <property name="text">
-           <string>Модуль:</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QComboBox" name="ModuleComboBox">
-          <item>
-           <property name="text">
-            <string>Coupons</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>LevalGauge</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>Topaz</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>SystemMonitor</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>HTTP Server</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>LevalGaugeService</string>
-           </property>
-          </item>
-         </widget>
-        </item>
-        <item>
-         <widget class="QLabel" name="label_5">
-          <property name="text">
-           <string>Сообщение:</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QLineEdit" name="MessageLineEdit"/>
-        </item>
-        <item>
-         <spacer name="horizontalSpacer">
-          <property name="orientation">
-           <enum>Qt::Horizontal</enum>
-          </property>
-          <property name="sizeHint" stdset="0">
-           <size>
-            <width>40</width>
-            <height>20</height>
-           </size>
-          </property>
-         </spacer>
-        </item>
-        <item>
-         <widget class="QPushButton" name="SearchPushButton">
-          <property name="text">
-           <string>Search</string>
-          </property>
-         </widget>
-        </item>
-       </layout>
-      </item>
-     </layout>
-    </item>
-    <item row="1" column="0">
-     <widget class="QTableWidget" name="logsTableWidget">
-      <column>
+  <property name="windowIcon">
+   <iconset resource="resurses.qrc">
+    <normaloff>:/actions/res/logs.png</normaloff>:/actions/res/logs.png</iconset>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <layout class="QHBoxLayout" name="searchPanelLayout">
+     <item>
+      <widget class="QLabel" name="label">
        <property name="text">
-        <string>Дата/время</string>
+        <string>Период: с </string>
        </property>
-      </column>
-      <column>
+      </widget>
+     </item>
+     <item>
+      <widget class="QDateTimeEdit" name="startDateTimeEdit"/>
+     </item>
+     <item>
+      <widget class="QLabel" name="label_2">
        <property name="text">
-        <string>UID</string>
+        <string>по</string>
        </property>
-      </column>
-      <column>
+      </widget>
+     </item>
+     <item>
+      <widget class="QDateTimeEdit" name="endDateTimeEdit"/>
+     </item>
+     <item>
+      <widget class="QLabel" name="label_3">
        <property name="text">
-        <string>Модуль</string>
+        <string>UID:</string>
        </property>
-      </column>
-      <column>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="UIDLineEdit"/>
+     </item>
+     <item>
+      <widget class="QLabel" name="label_4">
        <property name="text">
-        <string>Сообщение</string>
+        <string>Модуль:</string>
        </property>
-      </column>
-     </widget>
-    </item>
-   </layout>
-  </widget>
+      </widget>
+     </item>
+     <item>
+      <widget class="QComboBox" name="moduleComboBox">
+       <item>
+        <property name="text">
+         <string>All</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Coupons</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>LevalGauge</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Topaz</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>SystemMonitor</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>HTTPServerCGI</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>LevalGaugeService</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>n/a</string>
+        </property>
+       </item>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="label_5">
+       <property name="text">
+        <string>Сообщение:</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="messageLineEdit"/>
+     </item>
+     <item>
+      <spacer name="horizontalSpacer">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item>
+      <widget class="QPushButton" name="searchPushButton">
+       <property name="text">
+        <string>Поиск</string>
+       </property>
+       <property name="icon">
+        <iconset resource="resurses.qrc">
+         <normaloff>:/actions/res/search.png</normaloff>:/actions/res/search.png</iconset>
+       </property>
+       <property name="iconSize">
+        <size>
+         <width>16</width>
+         <height>16</height>
+        </size>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="savePushButton">
+       <property name="text">
+        <string>Сохранить</string>
+       </property>
+       <property name="icon">
+        <iconset resource="resurses.qrc">
+         <normaloff>:/actions/res/download.png</normaloff>:/actions/res/download.png</iconset>
+       </property>
+       <property name="iconSize">
+        <size>
+         <width>16</width>
+         <height>16</height>
+        </size>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <widget class="QTableWidget" name="logsTableWidget">
+     <property name="sizeAdjustPolicy">
+      <enum>QAbstractScrollArea::AdjustToContents</enum>
+     </property>
+     <property name="editTriggers">
+      <set>QAbstractItemView::AnyKeyPressed|QAbstractItemView::EditKeyPressed</set>
+     </property>
+     <property name="selectionMode">
+      <enum>QAbstractItemView::SingleSelection</enum>
+     </property>
+     <property name="selectionBehavior">
+      <enum>QAbstractItemView::SelectRows</enum>
+     </property>
+     <column>
+      <property name="text">
+       <string>Дата/время</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>UID</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>Модуль</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>Сообщение</string>
+      </property>
+     </column>
+    </widget>
+   </item>
+  </layout>
   <action name="actionSearch">
    <property name="text">
-    <string>Search</string>
+    <string>Поиск</string>
    </property>
    <property name="toolTip">
     <string> Поиск</string>
    </property>
   </action>
+  <action name="actionSave">
+   <property name="text">
+    <string>Сохранить</string>
+   </property>
+   <property name="toolTip">
+    <string>Сохранить лог в файл</string>
+   </property>
+  </action>
  </widget>
- <resources/>
+ <resources>
+  <include location="resurses.qrc"/>
+ </resources>
  <connections>
   <connection>
-   <sender>SearchPushButton</sender>
+   <sender>searchPushButton</sender>
    <signal>clicked()</signal>
    <receiver>actionSearch</receiver>
    <slot>trigger()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>800</x>
-     <y>41</y>
+     <x>936</x>
+     <y>21</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionSearch</sender>
+   <signal>triggered()</signal>
+   <receiver>Logs</receiver>
+   <slot>search()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>493</x>
+     <y>283</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionSave</sender>
+   <signal>triggered()</signal>
+   <receiver>Logs</receiver>
+   <slot>saveToFile()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>493</x>
+     <y>283</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>savePushButton</sender>
+   <signal>clicked()</signal>
+   <receiver>actionSave</receiver>
+   <slot>trigger()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>936</x>
+     <y>21</y>
     </hint>
     <hint type="destinationlabel">
      <x>-1</x>
@@ -178,4 +283,8 @@
    </hints>
   </connection>
  </connections>
+ <slots>
+  <slot>search()</slot>
+  <slot>saveToFile()</slot>
+ </slots>
 </ui>

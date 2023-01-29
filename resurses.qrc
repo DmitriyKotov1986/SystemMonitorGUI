@@ -1,0 +1,20 @@
+<RCC>
+    <qresource prefix="/ico">
+        <file>res/ico-32.png</file>
+        <file>res/ico-48.png</file>
+        <file>res/ico-64.png</file>
+        <file>res/ico-72.png</file>
+        <file>res/ico-96.png</file>
+        <file>res/ico-128.png</file>
+        <file>res/ico-256.png</file>
+        <file>res/ico-512.png</file>
+    </qresource>
+    <qresource prefix="/actions">
+        <file>res/download.png</file>
+        <file>res/erase.png</file>
+        <file>res/info.png</file>
+        <file>res/search.png</file>
+        <file>res/settings.png</file>
+        <file>res/logs.png</file>
+    </qresource>
+</RCC>

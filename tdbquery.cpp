@@ -9,8 +9,8 @@
 
 TDBQuery::TDBQuery(const QString& queryText, QObject *parent)
     : QObject(parent)
-    , _queryText(queryText)
     , _cnf(TConfig::config())
+    , _queryText(queryText)
 {
     Q_CHECK_PTR(_cnf);
 
@@ -81,11 +81,11 @@ void TDBQuery::exitWithError(const QString &msg)
     emit finished();
 }
 
-int TDBQuery::_connectionNumber = 0;
+static int connectionNumberValue = 0;
 
 int TDBQuery::connectionNumber()
 {
     QMutexLocker locker(&_mutex);
 
-    return _connectionNumber++;
+    return ++connectionNumberValue;
 }

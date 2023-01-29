@@ -45,7 +45,6 @@ private:
 
     QSqlDatabase _db;
 
-    static int _connectionNumber; //общая статическая переменная
     int _currentConnetionNumber;
     QMutex _mutex;
 

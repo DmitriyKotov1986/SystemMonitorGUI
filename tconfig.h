@@ -4,20 +4,16 @@
 //QT
 #include <QString>
 #include <QFile>
+#include <QVariant>
+#include <QMap>
+
+
 
 class TConfig final
 {
 public:
-    static TConfig* config(const QString& configFileName = "")
-    {
-        static TConfig* _config = nullptr;
-
-        if (_config == nullptr){
-            _config = new TConfig(configFileName);
-        }
-
-        return _config;
-    };
+    static TConfig* config(const QString& configFileName = "");
+    static void deleteConfig();
 
 private:
     explicit TConfig(const QString& configFileName);
@@ -36,7 +32,16 @@ public:
     quint16 db_Port() const { return _db_Port; }
 
     //[SYSTEM]
-    bool sys_DebugMode() const { return _sys_DebugMode; }\
+    bool sys_DebugMode() const { return _sys_DebugMode; }
+    const QString& pathForSaveFile() const { return _sys_PathForSaveFile; }
+    void setPathForSaveFile( const QString& pathForSaveFile) { _sys_PathForSaveFile = pathForSaveFile; }
+
+    //GUI
+    void clearWindowParam();
+    const QVariant& windowParam(const QString& windowName, const QString& paramName) const;
+    void setWindowParam(const QString& windowName, const QString& paramName, const QVariant& value);
+
+    //other
     const QString& errorString() const { return _errorString; }
     bool isError() const { return !_errorString.isEmpty(); }
 
@@ -56,6 +61,10 @@ private:
 
     //[SYSTEM]
     bool _sys_DebugMode = false;
+    QString _sys_PathForSaveFile;
+
+    //[GUI]
+    QMap<QString, QVariant> _windowsParams;
 };
 
 #endif // TCONFIG_H

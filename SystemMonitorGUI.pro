@@ -12,10 +12,13 @@ SOURCES += \
     Common/common.cpp \
     Common/tdbloger.cpp \
     Common/thttpquery.cpp \
+    about.cpp \
+    coupons.cpp \
     levelgauge.cpp \
     logs.cpp \
     main.cpp \
     mainwindow.cpp \
+    subwindow.cpp \
     tconfig.cpp \
     tdbquery.cpp
 
@@ -23,13 +26,18 @@ HEADERS += \
     Common/common.h \
     Common/tdbloger.h \
     Common/thttpquery.h \
+    about.h \
+    coupons.h \
     levelgauge.h \
     logs.h \
     mainwindow.h \
+    subwindow.h \
     tconfig.h \
     tdbquery.h
 
 FORMS += \
+    about.ui \
+    coupons.ui \
     levelgauge.ui \
     logs.ui \
     mainwindow.ui
@@ -38,3 +46,11 @@ FORMS += \
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
+
+RESOURCES += \
+    resurses.qrc
+
+RC_ICONS += res/SystemMonitorGUI64.ico
+
+DISTFILES += \
+    ToDo

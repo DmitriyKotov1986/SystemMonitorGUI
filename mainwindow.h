@@ -4,6 +4,8 @@
 //QT
 #include <QMainWindow>
 #include <QSqlDatabase>
+#include <QMdiArea>
+#include <QCloseEvent>
 
 //My
 #include "tconfig.h"
@@ -22,17 +24,34 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
-public slots:
+private slots:
     void showLogs();
     void showLevelGauge();
+    void showAbout();
+
+    void windowsTile();
+    void windowsCascade();
 
 private:
-    Ui::MainWindow *ui = nullptr;
+    void closeEvent(QCloseEvent *event) override;
+
+    int currentIdSubWindow();
+
+    void saveSettings();
+    void loadSettings();
+
+    QMdiSubWindow* showSubWindow(QWidget* subWidget);
+
+private:
+    Ui::MainWindow *_ui = nullptr;
+    QMdiArea *_mdiArea = nullptr;
 
     TConfig* _cnf = nullptr;
     Common::TDBLoger *_loger = nullptr;
 
     QSqlDatabase _logdb;
 
+    int _currentIdSubWindow = 0;
 };
+
 #endif // MAINWINDOW_H

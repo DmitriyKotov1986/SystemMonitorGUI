@@ -11,7 +11,11 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>System Monitor GUI</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="resurses.qrc">
+    <normaloff>:/ico/res/ico-32.png</normaloff>:/ico/res/ico-32.png</iconset>
   </property>
   <widget class="QWidget" name="centralwidget"/>
   <widget class="QMenuBar" name="menubar">
@@ -20,16 +24,16 @@
      <x>0</x>
      <y>0</y>
      <width>362</width>
-     <height>26</height>
+     <height>21</height>
     </rect>
    </property>
-   <widget class="QMenu" name="menu">
+   <widget class="QMenu" name="menuFile">
     <property name="title">
      <string>Файл</string>
     </property>
     <addaction name="actionExit"/>
    </widget>
-   <widget class="QMenu" name="menu_2">
+   <widget class="QMenu" name="menuModule">
     <property name="title">
      <string>Модуль</string>
     </property>
@@ -43,68 +47,113 @@
     <addaction name="separator"/>
     <addaction name="actionLogs"/>
    </widget>
-   <widget class="QMenu" name="menu_3">
+   <widget class="QMenu" name="menuHelp">
     <property name="title">
      <string>Справка</string>
     </property>
     <addaction name="actionAbout"/>
    </widget>
-   <addaction name="menu"/>
-   <addaction name="menu_2"/>
-   <addaction name="menu_3"/>
+   <widget class="QMenu" name="menuWindows">
+    <property name="title">
+     <string>Окна</string>
+    </property>
+    <addaction name="actionWindowsTile"/>
+    <addaction name="actionWindowsCascade"/>
+   </widget>
+   <addaction name="menuFile"/>
+   <addaction name="menuModule"/>
+   <addaction name="menuWindows"/>
+   <addaction name="menuHelp"/>
   </widget>
-  <widget class="QStatusBar" name="statusbar"/>
   <action name="actionAbout">
+   <property name="icon">
+    <iconset resource="resurses.qrc">
+     <normaloff>:/actions/res/info.png</normaloff>:/actions/res/info.png</iconset>
+   </property>
    <property name="text">
     <string>О программе</string>
    </property>
   </action>
   <action name="actionSystemMonitor">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
    <property name="text">
     <string>System Monitor</string>
    </property>
   </action>
   <action name="actionCoupons">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
    <property name="text">
     <string>Coupons</string>
    </property>
   </action>
   <action name="actionLevelGauge">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
    <property name="text">
     <string>LevelGauge</string>
    </property>
   </action>
   <action name="actionSync">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
    <property name="text">
     <string>Sync</string>
    </property>
   </action>
   <action name="actionTopaz">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
    <property name="text">
     <string>Topaz</string>
    </property>
   </action>
   <action name="actionSystemInfo">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
    <property name="text">
     <string>SystemInfo</string>
    </property>
   </action>
   <action name="actionLogs">
+   <property name="icon">
+    <iconset resource="resurses.qrc">
+     <normaloff>:/actions/res/logs.png</normaloff>:/actions/res/logs.png</iconset>
+   </property>
    <property name="text">
-    <string>Логи</string>
+    <string>Логирование</string>
    </property>
   </action>
   <action name="actionExit">
    <property name="icon">
-    <iconset theme="application-exit">
+    <iconset>
      <normaloff>.</normaloff>.</iconset>
    </property>
    <property name="text">
     <string>Выход</string>
    </property>
   </action>
+  <action name="actionWindowsTile">
+   <property name="text">
+    <string>Плитка</string>
+   </property>
+  </action>
+  <action name="actionWindowsCascade">
+   <property name="text">
+    <string>Каскад</string>
+   </property>
+  </action>
  </widget>
- <resources/>
+ <resources>
+  <include location="resurses.qrc"/>
+ </resources>
  <connections>
   <connection>
    <sender>actionExit</sender>
@@ -138,8 +187,76 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>actionLogs</sender>
+   <signal>triggered()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>showLogs()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>180</x>
+     <y>247</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionAbout</sender>
+   <signal>triggered()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>showAbout()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>180</x>
+     <y>247</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionWindowsCascade</sender>
+   <signal>triggered()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>windowsCascade()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>180</x>
+     <y>247</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionWindowsTile</sender>
+   <signal>triggered()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>windowsTile()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>180</x>
+     <y>247</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>showLevelGauge()</slot>
+  <slot>showLogs()</slot>
+  <slot>showAbout()</slot>
+  <slot>windowsCascade()</slot>
+  <slot>windowsTile()</slot>
  </slots>
 </ui>

@@ -53,6 +53,7 @@ int main(int argc, char *argv[])
         exit(EXIT_CODE::LOAD_CONFIG_ERR); // -1
     }
 
+
     //показываем основное окно
     MainWindow w;
     w.show();

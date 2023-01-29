@@ -7,6 +7,34 @@
 #include <QDir>
 #include <QTime>
 
+//static for singleton
+static TConfig* config_ptr = nullptr;
+
+TConfig* TConfig::config(const QString& configFileName)
+{
+    Q_ASSERT_X(!((config_ptr == nullptr) && configFileName.isEmpty()), "static TConfig* TConfig::config(const QString& configFileName)", "Object was not created");
+
+    if (config_ptr == nullptr)
+    {
+        config_ptr = new TConfig(configFileName);
+    }
+
+    return config_ptr;
+};
+
+void TConfig::deleteConfig()
+{
+    Q_ASSERT_X(config_ptr != nullptr , "static void TConfig::deleteConfig()", "Object was already deleted");
+
+    if (config_ptr != nullptr)
+    {
+        delete config_ptr;
+
+        config_ptr = nullptr;
+    }
+};
+
+//class
 TConfig::TConfig(const QString& configFileName) :
     _configFileName(configFileName)
 {
@@ -45,6 +73,15 @@ TConfig::TConfig(const QString& configFileName) :
 
     ini.beginGroup("SYSTEM");
     _sys_DebugMode = ini.value("DebugMode", "0").toBool();
+    _sys_PathForSaveFile = ini.value("PathForSaveFile").toString();
+    ini.endGroup();
+
+    ini.beginGroup("GUI");
+    auto GUIKeys = ini.allKeys();
+    for (const auto& key: GUIKeys)
+    {
+        _windowsParams[key] = ini.value(key);
+    }
     ini.endGroup();
 }
 
@@ -60,16 +97,59 @@ bool TConfig::save()
     if (!ini.isWritable())
     {
         _errorString = "Can not write configuration file " +  _configFileName;
+
         return false;
     }
 
+    ini.beginGroup("System");
+    ini.setValue("PathForSaveFile", _sys_PathForSaveFile);
+    ini.endGroup();
+
+    ini.remove("GUI");
+    ini.beginGroup("GUI");
+    for (auto windowsParamsIter = _windowsParams.begin(); windowsParamsIter != _windowsParams.end(); ++windowsParamsIter)
+    {
+        ini.setValue(windowsParamsIter.key(), windowsParamsIter.value());
+    }
+    ini.endGroup();
+
     ini.sync();
 
-    if (_sys_DebugMode)
-    {
-        qDebug() << QString("%1 %2").arg(QTime::currentTime().toString("hh:mm:ss")).arg("Save configuration to " +  _configFileName);
-    }
+    qDebug() << QString("%1 %2").arg(QTime::currentTime().toString("hh:mm:ss")).arg("Save configuration to " +  _configFileName);
 
     return true;
+}
+
+void TConfig::clearWindowParam()
+{
+    _windowsParams.clear();
+}
+
+static QVariant defaultWindowParam;
+
+const QVariant& TConfig::windowParam(const QString &windowName, const QString &paramName) const
+{
+    auto key = QString("%1_%2").arg(windowName).arg(paramName);
+
+    auto it = _windowsParams.find(key);
+
+    if (it != _windowsParams.end())
+    {
+        return *it;
+    }
+
+    return defaultWindowParam;
+}
+
+void TConfig::setWindowParam(const QString &windowName, const QString &paramName, const QVariant &value)
+{
+    if ((windowName.isEmpty()) || paramName.isEmpty())
+    {
+        return;
+    }
+
+    auto key = QString("%1_%2").arg(windowName).arg(paramName);
+
+    _windowsParams[key] = value;
 }
 
